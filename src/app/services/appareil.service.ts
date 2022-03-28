@@ -1,5 +1,10 @@
+import { Subject } from "rxjs";
+
 export class appareilService {
-    appareils = [
+
+    appareilSubject = new Subject<any[]>();
+
+    private appareils = [
         {
         id : 1,    
         name:'Machine à laver',
@@ -18,6 +23,10 @@ export class appareilService {
     
     ];
 
+    emitAppareilSubject() {
+        this.appareilSubject.next(this.appareils.slice());
+    }
+
     getAppareilById(id: number) {
         const appareil = this.appareils.find(
             (appareilObject) => {
@@ -31,20 +40,24 @@ export class appareilService {
         for(let appareil of this.appareils) {
             appareil.status='allumer'
         }
+        this.emitAppareilSubject();
     }
 
     switchOfffAll() {
         for(let appareil of this.appareils) {
             appareil.status='eteint'
         }
+        this.emitAppareilSubject();
     }
 
     switchOnOne(index: number) {
         this.appareils[index].status='allumer';
+        this.emitAppareilSubject();
     }
 
     switchOffOne(index: number) {
         this.appareils[index].status='eteint';
+        this.emitAppareilSubject();
     }
 
 }
