@@ -12,7 +12,7 @@ export class UserService {
             drinkPreference:' café',
             hobbies: [
                 'Golf',
-                'Casinp'
+                'Casino'
                 
             ]
         }
