@@ -22,13 +22,15 @@ export class AppareilComponent implements OnInit {
     return this.appareilStatus;
   }
 
-  getColor() {
+  getColor(){
 
     if(this.appareilStatus === 'allumer') {
       return  'green';
-    } else if (this.appareilStatus ==='eteint') {
+    } 
+    else {
       return 'red';
-    } return
+    } 
+
   }
 
   onSwitchOn() {

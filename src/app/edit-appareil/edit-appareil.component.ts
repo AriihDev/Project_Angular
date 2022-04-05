@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { appareilService } from '../services/appareil.service';
 
 @Component({
   selector: 'app-edit-appareil',
@@ -8,13 +10,22 @@ import { NgForm } from '@angular/forms';
 })
 export class EditAppareilComponent implements OnInit {
 
-  constructor() { }
+  defaultOnOff = 'eteint';
+
+  constructor(private appareilService: appareilService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    
+    const name = form.value ['name'];
+    const status = form.value ['status'];
+
+    this.appareilService.addAppareil(name,status);
+    this.router.navigate(['/appareils']);
+
   }
 
 }
